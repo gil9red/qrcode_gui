@@ -9,36 +9,22 @@
 
 from cx_Freeze import setup, Executable
 
-includes = ["pkg_resources"]
-excludes = ['tkinter']
+includes = []
+excludes = []
 packages = []
-
-from pyqode.core.api.syntax_highlighter import get_all_styles
-
-# collect pygments styles
-for s in get_all_styles():
-    module = 'pygments.styles.%s' % s.replace('-', '_')
-    try:
-        __import__(module)
-    except ImportError:
-        pass
-    else:
-        includes.append(module)
-        print('pygment style:', module)
-
 
 target = Executable(
     script='main.py',
-    targetName="dev_window.exe",
+    targetName="qrcode_gui.exe",
     compress=True,
     # icon=None,
 )
 
 setup(
-    name='dev_window',
+    name='qrcode_gui',
     version='0.1',
     author="Ilya Petrash",
-    description='dev_window',
+    description='qrcode_gui',
 
     options={
         "build_exe": {
@@ -46,7 +32,6 @@ setup(
             "excludes": excludes,
             "packages": packages,
             "build_exe": "bin",
-            "namespace_packages": ["pyqode"],
         }
     },
 

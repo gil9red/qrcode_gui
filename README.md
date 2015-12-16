@@ -1,5 +1,4 @@
-# dev_window
-Окно разработчика с окнами написания скрипта и лога.
+# qrcode_gui
+QR Code generator
 
-
-![](https://raw.githubusercontent.com/gil9red/dev_window/master/screenshot.png)
+![](https://raw.githubusercontent.com/gil9red/qrcode_gui/master/screenshot.png)
