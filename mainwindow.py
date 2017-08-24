@@ -4,13 +4,13 @@
 __author__ = 'ipetrash'
 
 
-# TODO: rem *
 import io
 
+# TODO: rem *
 from PySide.QtGui import *
 from PySide.QtCore import *
 
-from qrcode import make as make_qrcode
+import qrcode
 
 
 class MainWindow(QMainWindow):
@@ -58,10 +58,10 @@ class MainWindow(QMainWindow):
 
     def input_text_changed(self):
         text = self.input_text.toPlainText()
-        im = make_qrcode(text)
+        img = qrcode.make(text)
 
         b = io.BytesIO()
-        im.save(b, 'png')
+        img.save(b, 'png')
         data = b.getvalue()
 
         pixmap = QPixmap()
