@@ -4,11 +4,33 @@
 __author__ = 'ipetrash'
 
 
-import io
+try:
+    from PyQt5.QtWidgets import *
+    from PyQt5.QtGui import *
+    from PyQt5.QtCore import *
 
-# TODO: rem *
-from PySide.QtGui import *
-from PySide.QtCore import *
+except:
+    try:
+        from PyQt4.QtGui import *
+        from PyQt4.QtCore import *
+
+    except:
+        from PySide.QtGui import *
+        from PySide.QtCore import *
+
+
+def log_uncaught_exceptions(ex_cls, ex, tb):
+    text = '{}: {}:\n'.format(ex_cls.__name__, ex)
+    import traceback
+    text += ''.join(traceback.format_tb(tb))
+
+    print(text)
+    QMessageBox.critical(None, 'Error', text)
+    quit()
+
+
+import sys
+sys.excepthook = log_uncaught_exceptions
 
 import qrcode
 
@@ -60,6 +82,7 @@ class MainWindow(QMainWindow):
         text = self.input_text.toPlainText()
         img = qrcode.make(text)
 
+        import io
         b = io.BytesIO()
         img.save(b, 'png')
         data = b.getvalue()
