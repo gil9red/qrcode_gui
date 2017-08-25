@@ -45,12 +45,12 @@ class MainWindow(QMainWindow):
         self.input_text.textChanged.connect(self.input_text_changed)
 
         self.label_im_qrcode = QLabel()
+        self.label_im_qrcode.setAlignment(Qt.AlignCenter)
+
         label_im_qrcode_scrollarea = QScrollArea()
         label_im_qrcode_scrollarea.setBackgroundRole(QPalette.Dark)
         label_im_qrcode_scrollarea.setWidgetResizable(True)
         label_im_qrcode_scrollarea.setWidget(self.label_im_qrcode)
-        # TODO: not working align
-        label_im_qrcode_scrollarea.setAlignment(Qt.AlignCenter)
 
         self.button_save_as = QPushButton('Save as')
         self.button_save_as.clicked.connect(self.save_as)
